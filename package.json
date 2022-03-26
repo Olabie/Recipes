@@ -2,7 +2,7 @@
   "name": "recipes",
   "version": "1.0.0",
   "description": "this is for the recipe project",
-  "main": "main.html",
+  "default": "main.html",
   "scripts": {
     "start": "main.html"
   },
