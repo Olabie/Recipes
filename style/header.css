@@ -1,0 +1,95 @@
+/* Start header */
+header {
+  /* background-image: linear-gradient(270deg, #c42252, #c8b6b9);
+   */
+  background-image: linear-gradient(270deg, #8a6240, #c8b6b9);
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  transition: 0.4s;
+  z-index: 3;
+  /* position: fixed; */
+  /* background-image: linear-gradient(270deg, #c8b6b9, #c42252); */
+}
+.menu {
+  display: none;
+  color: #fff;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .menu {
+    display: block;
+  }
+  header ul {
+    display: none !important;
+  }
+}
+header .container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  height: 100px;
+}
+header .navbar {
+  position: relative;
+}
+header .logo img {
+  border-radius: 150px;
+  width: 100px;
+  height: 100%;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul li a {
+  padding: 10px;
+  font-family: "Kalam", cursive;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+header nav ul li a:hover {
+  color: #eb5359;
+  background-color: white;
+}
+.sticky {
+  height: 80px;
+  background-color: #fff;
+  background-image: none;
+}
+.sticky .logo img {
+  width: 80px;
+  height: auto;
+  margin-top: 7px;
+}
+.sticky ul li a {
+  color: black;
+}
+.sticky .menu {
+  color: black;
+}
+/* Start Responsive navbar */
+header ul.nav-res {
+  display: flex !important;
+  flex-direction: column;
+  z-index: 4;
+  position: absolute;
+  bottom: -186px;
+  right: -10px;
+  width: 100vw;
+  height: 160px;
+}
+header ul.nav-res li {
+  text-align: center;
+}
+header ul.nav-res li a {
+  color: white;
+  background-color: black;
+  padding: 30px;
+  display: block;
+}
+/* End  Responsive navbar */
+/* End header */
