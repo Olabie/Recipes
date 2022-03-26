@@ -81,7 +81,7 @@ class RecipeView{
           const markup = `
           <div class="top">
             <h3 class="ingTitle" >${recipe.title}</h3>
-        <button  style="max-height: 50px;" class="mark"><i class="fa-solid fa-bookmark"></i></button>
+            <!--  <button  style="max-height: 50px;" class="mark"><i class="fa-solid fa-bookmark"></i></button> -->  
         </div>
         <div style="flex-direction: column;" class="ingredients">
            

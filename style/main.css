@@ -125,8 +125,6 @@ a {
   .X {
     align-self: end;
   }
-  .booked img {
-  }
 }
 .bookmarksStore img {
   width: 100px;
@@ -459,9 +457,11 @@ button.send:hover {
 }
 
 .right .help {
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .right a.guide {
+  align-self: center;
   background-color: #eb5359;
   border: none;
   padding: 10px;
@@ -471,11 +471,6 @@ button.send:hover {
   cursor: pointer;
   transition: 0.4s;
   margin-top: 30px;
-  position: absolute;
-  width: 30%;
-  left: 50%;
-  bottom: -37%;
-  transform: translate(-50%, -50%);
 }
 .right .top {
   display: flex;
