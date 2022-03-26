@@ -47,7 +47,7 @@ header nav ul {
 header nav ul li a {
   padding: 10px;
   font-family: "Kalam", cursive;
-  color: white;
+  color: #fff;
   font-weight: bold;
   transition: 0.3s;
 }
