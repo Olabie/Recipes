@@ -97,7 +97,7 @@ class RecipeView{
         </div>
         <div class="help">
             <p class="description">
-                This recipe was made by Olabie ,Click on the Tutorial button to get
+                This recipe was made by ${recipe.publisher},Click on the Tutorial button to get
                 more detials on how to cook it!
             </p>
             
@@ -117,7 +117,7 @@ class RecipeView{
          });
     }     
     renderNotFoundRecipe(){
-        console.log("rendering errror message")
+      
         const markup = `<p class="error-msg" >Sorry we could not find <span class="searchValue">${this.searchFeild.value}
        </span> in our reciepes,Try another one!</p>`;
         this._next.classList.add("hidden");

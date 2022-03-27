@@ -38,7 +38,6 @@ const renderRecipes = async function(query)
      times++;
     }
     catch(err){
-        console.log(err);
         throw err;
     } 
 }
@@ -48,7 +47,6 @@ searchForm.addEventListener("submit",function(e){
    if(availabeSearch.includes(String(recipeView.searchFeild.value.toLocaleLowerCase())))
     renderRecipes(recipeView.searchFeild.value);
     else{
-        console.log("Very bad search")
        recipeView.renderNotFoundRecipe();
     }
     recipeView.searchFeild.value= '';

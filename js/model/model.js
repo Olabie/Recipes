@@ -8,7 +8,7 @@ export async function getRecipeSimpleData(query){
     }
     catch(err)
     {
-        console.log(err);
+      
         throw err;
     }
 }
@@ -22,7 +22,7 @@ export async function getRecipeData(id){
     }
     catch(err)
     {
-        console.log(err);
+        
         throw err;
     }
 }
@@ -39,7 +39,7 @@ export async function createRecipes(data){
    });
     }catch(err)
     {
-        console.log(err);
+       
         throw err;
     }
 }
