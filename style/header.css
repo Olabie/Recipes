@@ -45,6 +45,7 @@ header nav ul {
   display: flex;
 }
 header nav ul li a {
+  cursor: pointer;
   padding: 10px;
   font-family: "Kalam", cursive;
   color: #fff;

@@ -3,17 +3,22 @@ const menu = document.querySelector(".menu");
 const landing = document.querySelector(".landing");
 const space = document.querySelector(".space");
 const header = document.querySelector("header");
+const links = document.querySelector(".links");
 
+links.addEventListener("click",function(e){
+  const clicked = e.target.closest(".link");
+  const sec = document.querySelector(`#${clicked.dataset.sec}`);
+  console.log(sec)
+ const secCoords = sec.getBoundingClientRect();
+ console.log(secCoords)
+ window.scrollTo(secCoords.left +window.pageXOffset,secCoords.top+window.pageYOffset - 100);
+})
 menu.addEventListener("click",function(){
 navbar.classList.toggle("nav-res");
 });
 navbar.addEventListener("click",function(e){
-const linkClicked = e.target.closest("li");
 navbar.classList.remove("nav-res");
 })
-// document.addEventListener("click",function(){
-//     navbar.classList.remove("nav-res");
-// });
 
 const landObserv = new IntersectionObserver(function(entries){
     const [entry] = entries;

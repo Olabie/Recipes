@@ -2,20 +2,19 @@ import * as config from "../config.js"
 import * as model from "../model/model.js"
 class RecipeView{
      searchFeild = document.querySelector(".search-feild");
+     pageNumber = document.querySelector(".pageNumber");
+     right= document.querySelector(".rightt")
      _prev = document.querySelector(".prevr");
      _next = document.querySelector(".nextr");
-     pageNumber = document.querySelector(".pageNumber");
      _resultsParent =  document.querySelector(".results");
      _ingredients = document.querySelector(".ingredients");
      _guide = document.querySelector(".guide");
      _ingTitle = document.querySelector(".ingTitle");
-     right= document.querySelector(".rightt")
-     
      _lastPage  = false;
      _firstPage = false;
-     booksmarks =[];
-    // Start methods
-    
+    //  booksmarks =[]; 
+    timesN = 0; //make sure that only 1 event listener is added to the next button
+    timesP =0;//make sure that only 1 event listener is added to the prev button
     // markRecipe(id){
     //   const  markButton = document.querySelector(".mark"); 
     //     markButton.addEventListener("click",()=>{
@@ -34,22 +33,31 @@ class RecipeView{
     //     });
         
     // }
-     goNext(myRecipes){
-               
+        // Start methods
+     goNext(myRecipes){      
+         if(this.timesN ===0)  
             this._next.addEventListener("click",()=>{
-        
              if(this._lastPage === true)
              return;
             Number(this.pageNumber.textContent++); 
             this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent));
          });
+         
     }       
+    renderLoading(par){
+        const markup = `
+        <div class="loader"> </div>`;
+        par.innerHTML =' ';
+        par.classList.remove("hidden");
+        par.insertAdjacentHTML("afterbegin",markup);
+    }
        getRecipeID(){
            this._resultsParent.addEventListener("click",async (e)=>{
                     const clicked = e.target.closest(".result");
                     if(!clicked) return;  
                     this.right.classList.remove("hidden");
                     this.right.innerHTML = ''
+                    this.renderLoading(this.right);
               await this.getRecipeDetails(clicked.dataset.id);
              
            });
@@ -63,8 +71,7 @@ class RecipeView{
            
        }
        renderIngredients(arr)
-       {
-        
+       {      
            let string = "";
            for(let i =0; i<arr.length;i++)
            {
@@ -77,7 +84,7 @@ class RecipeView{
            return string;
        }
        renderRecipeDetails(recipe){
-      
+      this.right.innerHTML ='';
           const markup = `
           <div class="top">
             <h3 class="ingTitle" >${recipe.title}</h3>
@@ -101,15 +108,27 @@ class RecipeView{
         //   this.markRecipe(121322)
        }
      goPrev(myRecipes){
-     
-         this._prev.addEventListener("click",()=>{
-            
+        if(this.timesN ===0) 
+         this._prev.addEventListener("click",()=>{     
              if(this._firstPage === true)
              return;
         Number(this.pageNumber.textContent--);
         this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent)); 
          });
     }     
+    renderNotFoundRecipe(){
+        console.log("rendering errror message")
+        const markup = `<p class="error-msg" >Sorry we could not find <span class="searchValue">${this.searchFeild.value}
+       </span> in our reciepes,Try another one!</p>`;
+        this._next.classList.add("hidden");
+        this._prev.classList.add("hidden");
+        this.pageNumber.classList.add("hidden"); 
+        this.right.classList.add("hidden"); 
+        this.right.innerHTML = '';
+        this._resultsParent.innerHTML = '';
+        this._resultsParent.classList.remove("hidden")
+        this._resultsParent.insertAdjacentHTML("afterbegin",markup);
+    }
     clearOnLoad()
     {     
         window.addEventListener("load",()=>{        
@@ -165,7 +184,7 @@ recipesPerPage (resPerPage,recipes,page=1)
         this._firstPage= true;
         this._prev.classList.add("hidden");
         }
-         else{
+     else{
             this._firstPage =false;
             this._prev.classList.remove("hidden");
          }
