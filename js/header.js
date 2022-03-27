@@ -8,11 +8,9 @@ const links = document.querySelector(".links");
 links.addEventListener("click",function(e){
   const clicked = e.target.closest(".link");
   const sec = document.querySelector(`#${clicked.dataset.sec}`);
-  console.log(sec)
  const secCoords = sec.getBoundingClientRect();
- console.log(secCoords)
  window.scrollTo(secCoords.left +window.pageXOffset,secCoords.top+window.pageYOffset - 100);
-})
+});
 menu.addEventListener("click",function(){
 navbar.classList.toggle("nav-res");
 });

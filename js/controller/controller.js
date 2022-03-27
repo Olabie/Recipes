@@ -24,7 +24,6 @@ let times = 0;
 
 const renderRecipes = async function(query)
 {
-    console.log(recipeView.searchFeild.value)
     try{      
         recipeView.renderLoading(recipeView._resultsParent);
     const data = await model.getRecipeSimpleData(query);
