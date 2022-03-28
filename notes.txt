@@ -1,0 +1,4 @@
+Features to be added : 
+ 1)Bookmarking recipes
+ 2)Auto correct searching words example searched pizzza To be Correct to pizza or ask the user did u mean pizza ? with a link to click on it
+
