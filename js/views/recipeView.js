@@ -13,8 +13,8 @@ class RecipeView{
      _lastPage  = false;
      _firstPage = false;
     //  booksmarks =[]; 
-    timesN = 0; //make sure that only 1 event listener is added to the next button
-    timesP =0;//make sure that only 1 event listener is added to the prev button
+    timesN = true; //make sure that only 1 event listener is added to the next button
+    timesP = true; //make sure that only 1 event listener is added to the prev button
     // markRecipe(id){
     //   const  markButton = document.querySelector(".mark"); 
     //     markButton.addEventListener("click",()=>{
@@ -33,17 +33,29 @@ class RecipeView{
     //     });
         
     // }
-        // Start methods
-     goNext(myRecipes){      
-         if(this.timesN ===0)  
-            this._next.addEventListener("click",()=>{
-             if(this._lastPage === true)
-             return;
-            Number(this.pageNumber.textContent++); 
-            this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent));
-         });
-         
-    }       
+      //  Start methods
+    goNext(myRecipes){      
+        if(this.timesN){
+            this.timesN = false;
+           this._next.addEventListener("click",()=>{
+            if(this._lastPage === true)
+            return;
+           Number(this.pageNumber.textContent++); 
+           this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent));
+        });
+    }
+   }    
+   goPrev(myRecipes){
+    if(this.timesP){
+        this.timesP = false;
+     this._prev.addEventListener("click",()=>{     
+         if(this._firstPage === true)
+         return;
+    Number(this.pageNumber.textContent--);
+    this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent)); 
+     });
+    }
+}        
     renderLoading(par){
         const markup = `
         <div class="loader"> </div>`;
@@ -65,10 +77,7 @@ class RecipeView{
        }
       async getRecipeDetails(recipe){
           const data = await model.getRecipeData(recipe)
-      
-         
          this.renderRecipeDetails(data.recipe);
-           
        }
        renderIngredients(arr)
        {      
@@ -107,15 +116,7 @@ class RecipeView{
           this.right.insertAdjacentHTML("afterbegin",markup)
         //   this.markRecipe(121322)
        }
-     goPrev(myRecipes){
-        if(this.timesN ===0) 
-         this._prev.addEventListener("click",()=>{     
-             if(this._firstPage === true)
-             return;
-        Number(this.pageNumber.textContent--);
-        this.recipesPerPage(config.RESULT_PER_PAGE,myRecipes,Number(this.pageNumber.textContent)); 
-         });
-    }     
+
     renderNotFoundRecipe(){
       
         const markup = `<p class="error-msg" >Sorry we could not find <span class="searchValue">${this.searchFeild.value}
